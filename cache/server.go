@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/redis/go-redis/v9"
-	"github.com/steve-mir/diivix_backend/internal/app/posts/pb"
+	// "github.com/steve-mir/diivix_backend/internal/app/posts/pb"
 )
 
 type Cache struct {
@@ -96,58 +96,58 @@ func (c *Cache) SRem(ctx context.Context, setKey string, member interface{}) err
 
 // Worker function that listens to the channel and processes messages
 // TODO: Refactor to be like PostSubscribeAndProcess and more generic
-func (c *Cache) SubscribeAndProcessOld(ctx context.Context, channel string) {
-	pubsub := c.client.Subscribe(ctx, channel)
-	defer pubsub.Close()
+// func (c *Cache) SubscribeAndProcessOld(ctx context.Context, channel string) {
+// 	pubsub := c.client.Subscribe(ctx, channel)
+// 	defer pubsub.Close()
 
-	// Wait for confirmation that subscription is created before starting to receive messages
-	_, err := pubsub.Receive(ctx)
-	if err != nil {
-		panic(err)
-	}
+// 	// Wait for confirmation that subscription is created before starting to receive messages
+// 	_, err := pubsub.Receive(ctx)
+// 	if err != nil {
+// 		panic(err)
+// 	}
 
-	// Go channel which receives messages
-	ch := pubsub.Channel()
+// 	// Go channel which receives messages
+// 	ch := pubsub.Channel()
 
-	for msg := range ch {
-		fmt.Printf("Received message from %s: %s\n", msg.Channel, msg.Payload)
-		// Process message
-	}
-}
+// 	for msg := range ch {
+// 		fmt.Printf("Received message from %s: %s\n", msg.Channel, msg.Payload)
+// 		// Process message
+// 	}
+// }
 
 func (c *Cache) Publish(ctx context.Context, channel string, message []byte) *redis.IntCmd {
 	return c.client.Publish(ctx, channel, message)
 }
 
-func (c *Cache) SubscribeAndProcess(ctx context.Context, channel string) {
-	pubsub := c.client.Subscribe(ctx, channel)
-	defer pubsub.Close()
+// func (c *Cache) SubscribeAndProcess(ctx context.Context, channel string) {
+// 	pubsub := c.client.Subscribe(ctx, channel)
+// 	defer pubsub.Close()
 
-	// Wait for confirmation that subscription is created
-	if _, err := pubsub.Receive(ctx); err != nil {
-		log.Printf("Subscribe failed: %v", err)
-		return // Exit the function without exiting the entire program
-	}
+// 	// Wait for confirmation that subscription is created
+// 	if _, err := pubsub.Receive(ctx); err != nil {
+// 		log.Printf("Subscribe failed: %v", err)
+// 		return // Exit the function without exiting the entire program
+// 	}
 
-	ch := pubsub.Channel()
+// 	ch := pubsub.Channel()
 
-	for {
-		select {
-		case msg := <-ch:
-			// Process the received message
-			var post pb.Post
-			if err := json.Unmarshal([]byte(msg.Payload), &post); err != nil {
-				log.Printf("Error unmarshalling message: %v", err)
-				continue
-			}
-			// Handle the post object
-		case <-ctx.Done():
-			// Context was cancelled, stop processing
-			log.Printf("Subscription to channel %s stopped", channel)
-			return
-		}
-	}
-}
+// 	for {
+// 		select {
+// 		case msg := <-ch:
+// 			// Process the received message
+// 			var post pb.Post
+// 			if err := json.Unmarshal([]byte(msg.Payload), &post); err != nil {
+// 				log.Printf("Error unmarshalling message: %v", err)
+// 				continue
+// 			}
+// 			// Handle the post object
+// 		case <-ctx.Done():
+// 			// Context was cancelled, stop processing
+// 			log.Printf("Subscription to channel %s stopped", channel)
+// 			return
+// 		}
+// 	}
+// }
 
 func (c *Cache) Subscribe(ctx context.Context, channels ...string) *redis.PubSub {
 	return c.client.Subscribe(ctx, channels...)
