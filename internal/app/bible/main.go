@@ -56,7 +56,7 @@ func main() {
 	}
 
 	// Run db migrations
-	runDbMigration(config.MigrationUrl, config.DBSource)
+	// runDbMigration(config.MigrationUrl, config.DBSource)
 
 	// Create the routes
 	db, err := sqlc.CreateDbPool(config)
