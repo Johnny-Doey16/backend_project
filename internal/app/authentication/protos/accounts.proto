@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package pb;
+
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+
+message Account {
+    int32 id = 1;
+    string user_id = 2;
+    string account_name = 3;
+    string account_number = 4;
+    string bank_name = 5;
+    double total_coin = 6;
+  }
+
+  
+  message IncreaseTotalCoinRequest {
+    double amount_to_increase = 1;
+  }
+  
+  message IncreaseTotalCoinResponse {
+    double new_total_coin = 1;
+  }

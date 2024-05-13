@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+
+// A like or unlike event sent by the client
+message LikePostRequest {
+  string post_id = 1;   // ID of the post being liked or unliked
+  string post_user_id = 2;
+}
+
+// Real-time update of likes sent to the client
+message LikePostResponse {
+  string post_id = 1;   // ID of the post for which the like count is updated
+  int64 like_count = 2; // The new like count for the post
+  bool like = 3; // True if like, false if unlike
+}
+
+message LikeUpdate {
+  string post_id = 1;
+  int64 new_likes = 2;
+}

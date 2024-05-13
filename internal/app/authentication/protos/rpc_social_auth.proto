@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package pb;
+
+import "user.proto";
+import "google/protobuf/timestamp.proto";
+import "auth_token_info.proto";
+
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+// Request for registering with a social media account.
+message RegisterWithSocialRequest {
+    string social_provider = 1; // e.g., "facebook", "google", "twitter"
+    string access_token = 2;    // Access token from the social media provider.
+}
+
+// Response for registering with a social media account.
+message RegisterWithSocialResponse {
+    User user = 1;                // The user information.
+    string access_token = 2;      // Access token to be used for authenticated requests.
+    google.protobuf.Timestamp access_token_expires_at = 3; // Expiry time of the access token.
+}
+
+// Request for logging in with a social media account.
+message LoginWithSocialRequest {
+    string social_provider = 1; // e.g., "facebook", "google", "twitter"
+    string access_token = 2;    // Access token from the social media provider.
+}
+
+// Response for logging in with a social media account.
+message LoginWithSocialResponse {
+    User user = 1;                // The user information.
+    AuthTokenInfo authInfo = 2;      // Info on the access token
+}

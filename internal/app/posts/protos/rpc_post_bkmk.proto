@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+import "post.proto";
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+// The request message containing the user's ID to get bookmarked posts.
+message GetBookmarkedPostsRequest {
+    int32 page_number = 1;
+    int32 page_size = 2;
+  }
+  
+  // The message representing a single bookmarked post.
+  message BookmarkedPost {
+    Post post = 1;
+    google.protobuf.Timestamp bookmarked_at = 2;
+  }
+  
+  // The response message containing the list of bookmarked posts.
+  message GetBookmarkedPostsResponse {
+    repeated BookmarkedPost posts = 1;
+    bool has_more = 2;
+  }
+  
+  // The request message containing the user's ID and the post's ID to delete a bookmark.
+  message DeleteBookmarkRequest {
+      int32 id = 1;
+  }
+  
+  // The response message containing the result of the delete bookmark action.
+  message DeleteBookmarkResponse {
+    bool success = 1;
+    string message = 2;
+  }
+  
+  // The response message containing the result of the bookmark action.
+  message BookmarkPostResponse {
+    bool success = 1;
+    string message = 2;
+  }
+  
+  // The request message containing the user's ID and the post's ID to bookmark.
+  message BookmarkPostRequest {
+    string post_id = 1;
+  }

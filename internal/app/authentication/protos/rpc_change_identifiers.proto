@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+
+// Request to initiate a change of email address.
+message InitiateChangeEmailRequest {
+    string new_email = 1; // The new email address to change to
+}
+
+// Response to the request to initiate a change of email address.
+message InitiateChangeEmailResponse {
+    string message = 1; // Message confirming the initiation was successful
+}
+
+// Request to confirm the change of email address.
+message ConfirmChangeEmailRequest {
+    string verification_code = 1; // The verification code sent to the user's new email address
+}
+
+// Response to the request to confirm the change of email address.
+message ConfirmChangeEmailResponse {
+    string message = 1; // Message confirming the email change was successful
+    string access_token = 2;
+    google.protobuf.Timestamp access_token_expires_at = 3;
+}
+
+// Request to initiate a change of phone number.
+message InitiateChangePhoneRequest {
+    string new_phone = 1; // The new phone number to change to
+}
+
+// Response to the request to initiate a change of phone number.
+message InitiateChangePhoneResponse {
+    string message = 1; // Message confirming the initiation was successful
+}
+
+// Request to confirm the change of phone number.
+message ConfirmChangePhoneRequest {
+    string verification_code = 1; // The verification code sent to the user's new phone number
+}
+
+// Response to the request to confirm the change of phone number.
+message ConfirmChangePhoneResponse {
+    string message = 1; // Message confirming the phone change was successful
+    string access_token = 2;
+    google.protobuf.Timestamp access_token_expires_at = 3;
+}
+
+// Request to change the username.
+message ChangeUsernameRequest {
+    string new_username = 1; // The new username to change to
+}
+
+// Response to the request to change the username.
+message ChangeUsernameResponse {
+    string message = 1; // Message confirming the username change was successful
+    string access_token = 2;
+    google.protobuf.Timestamp access_token_expires_at = 3;
+}

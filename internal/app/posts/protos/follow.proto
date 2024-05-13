@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+
+message FollowUserRequest {
+  string following_id = 1;
+}
+
+message UnFollowUserRequest {
+  string following_id = 1;
+}
+
+message FollowResponse {
+  bool success = 1;
+}
+
+message GetFollowersRequest {}
+
+message GetFollowingRequest {}

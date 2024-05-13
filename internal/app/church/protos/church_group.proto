@@ -1,0 +1,107 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+// The request and response messages for Group operations
+message Group {
+  int32 id = 1;
+  int32 denomination_id = 2;
+  string name = 3;
+  string description = 4;
+}
+
+message GroupList {
+  repeated Group groups = 1;
+}
+
+message GroupId {
+  int32 id = 1;
+}
+
+// The request and response messages for UserGroupMembership operations
+message UserGroupMembership {
+  int32 id = 1;
+  int32 group_id = 2;
+  string user_id = 3; // Assuming UUID is represented as a string
+  google.protobuf.Timestamp join_date = 4;
+  bool is_admin = 5;
+}
+
+message UserGroupMembershipList {
+  repeated UserGroupMembership memberships = 1;
+}
+
+message GroupMembershipId {
+  int32 id = 1;
+}
+
+// The request and response messages for Organization operations
+message Organization {
+  int32 id = 1;
+  int32 church_id = 2;
+  string name = 3;
+  string description = 4;
+}
+
+message OrganizationList {
+  repeated Organization organizations = 1;
+}
+
+message OrganizationId {
+  int32 id = 1;
+}
+
+// The request and response messages for UserOrganizationMembership operations
+message UserOrganizationMembership {
+  int32 id = 1;
+  int32 organization_id = 2;
+  string user_id = 3; // Assuming UUID is represented as a string
+  google.protobuf.Timestamp join_date = 4;
+  bool approved = 5;
+  bool is_admin = 6;
+}
+
+message UserOrganizationMembershipList {
+  repeated UserOrganizationMembership memberships = 1;
+}
+
+message OrganizationMembershipId {
+  int32 id = 1;
+}
+
+// The request and response messages for GroupForums operations
+message GroupForum {
+  int32 id = 1;
+  int32 group_id = 2;
+  string user_id = 3; // Assuming UUID is represented as a string
+  string message = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
+
+message GroupForumList {
+  repeated GroupForum forums = 1;
+}
+
+message GroupForumId {
+  int32 id = 1;
+}
+
+// The request and response messages for OrganizationForums operations
+message OrganizationForum {
+  int32 id = 1;
+  int32 organization_id = 2;
+  string user_id = 3; // Assuming UUID is represented as a string
+  string message = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
+
+message OrganizationForumList {
+  repeated OrganizationForum forums = 1;
+}
+
+message OrganizationForumId {
+  int32 id = 1;
+}

@@ -1,0 +1,1712 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "accounts.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "UserAuth"
+    },
+    {
+      "name": "UserProfile"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/auth/bypass_mfa": {
+      "post": {
+        "summary": "RPC to bypass mfa in case they lose their device",
+        "operationId": "UserAuth_ByPassMFA",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbByPassOtpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request message for bypassing OTP.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbByPassOtpRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/change_password": {
+      "post": {
+        "summary": "Update(change) password",
+        "operationId": "UserAuth_ChangePassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbChangePasswordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "The request message for changing a user's password.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbChangePasswordRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/change_username": {
+      "post": {
+        "summary": "Update username",
+        "operationId": "UserAuth_ChangeUsername",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbChangeUsernameResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request to change the username.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbChangeUsernameRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/confirm_change_email": {
+      "post": {
+        "summary": "Confirm the change of email",
+        "operationId": "UserAuth_ConfirmChangeEmail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbConfirmChangeEmailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request to confirm the change of email address.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbConfirmChangeEmailRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/confirm_change_phone": {
+      "post": {
+        "summary": "Confirm the change of phone number",
+        "operationId": "UserAuth_ConfirmChangePhone",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbConfirmChangePhoneResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request to confirm the change of phone number.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbConfirmChangePhoneRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/delete_account": {
+      "post": {
+        "summary": "Deletes a user account, typically this is a soft delete.",
+        "operationId": "UserAuth_DeleteAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDeleteAccountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "The request to delete a user account.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbDeleteAccountRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/increase_coin": {
+      "post": {
+        "summary": "! move to payments",
+        "operationId": "UserAuth_IncreaseTotalCoin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbIncreaseTotalCoinResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbIncreaseTotalCoinRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/initiate_change_email": {
+      "post": {
+        "summary": "Initiate a change email request",
+        "operationId": "UserAuth_InitiateChangeEmail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbInitiateChangeEmailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request to initiate a change of email address.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbInitiateChangeEmailRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/initiate_change_phone": {
+      "post": {
+        "summary": "Initiate a change phone number request",
+        "operationId": "UserAuth_InitiateChangePhone",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbInitiateChangePhoneResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request to initiate a change of phone number.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbInitiateChangePhoneRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/login": {
+      "post": {
+        "summary": "login",
+        "operationId": "UserAuth_LoginUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbLoginUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbLoginUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/login_sso": {
+      "post": {
+        "summary": "Login with a social media account.",
+        "operationId": "UserAuth_LoginWithSocial",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbLoginWithSocialResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request for logging in with a social media account.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbLoginWithSocialRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/recover_account": {
+      "post": {
+        "summary": "Completes the account recovery process.",
+        "operationId": "UserAuth_CompleteAccountRecovery",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbCompleteRecoveryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "The request to complete the account recovery process.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbCompleteRecoveryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/register": {
+      "post": {
+        "summary": "register",
+        "operationId": "UserAuth_CreateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbCreateUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbCreateUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/register_mfa": {
+      "post": {
+        "summary": "2factor auth\nRPC to register a new user for MFA.",
+        "operationId": "UserAuth_RegisterMFA",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbRegisterMFAResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request message for MFA registration.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbRegisterMFARequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/register_sso": {
+      "post": {
+        "summary": "Register with a social media account.",
+        "operationId": "UserAuth_RegisterWithSocial",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbRegisterWithSocialResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request for registering with a social media account.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbRegisterWithSocialRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/request_account_recovery": {
+      "post": {
+        "summary": "Initiates the process to recover a deleted account.",
+        "operationId": "UserAuth_RequestAccountRecovery",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbRecoveryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "The request to initiate an account recovery process.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbRecoveryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/request_reset_password": {
+      "post": {
+        "summary": "Forgot password\nRPC method to request a password reset.",
+        "operationId": "UserAuth_RequestPasswordReset",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbRequestPasswordResetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "The request message for initiating a password reset process.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbRequestPasswordResetRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/resend_verification": {
+      "post": {
+        "summary": "RPC to resend email verification.",
+        "operationId": "UserAuth_ResendVerification",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbResendVerificationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "The request message containing no data for ResendVerification.\n\nYou can add user identifier if needed, for instance, a user ID or email.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbResendVerificationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/reset_password": {
+      "post": {
+        "summary": "RPC method to actually reset the password, using a reset token.",
+        "operationId": "UserAuth_ResetPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbResetPasswordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "The request message for resetting the user's password using a reset token.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbResetPasswordRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/rotate_token": {
+      "post": {
+        "summary": "rotate token",
+        "operationId": "UserAuth_RotateToken",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbRotateTokenResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbRotateTokenRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/suggest_user": {
+      "post": {
+        "summary": "Suggest users",
+        "operationId": "UserAuth_UserSuggestions",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/pbUserResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of pbUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": " (streaming inputs)",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbUserQuery"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/update_user": {
+      "patch": {
+        "summary": "update image. Also called after image is uploaded",
+        "operationId": "UserAuth_UpdateProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbUpdateProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbUpdateProfileRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/update_user_profile": {
+      "patch": {
+        "summary": "update image. Also called after image is uploaded",
+        "operationId": "UserAuth_UpdateUserProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbUpdateUserProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": " (streaming inputs)",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbUpdateUserProfileRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/verify_email": {
+      "post": {
+        "summary": "RPC to verify an email.",
+        "operationId": "UserAuth_VerifyEmail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbVerifyEmailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "The request message containing the data needed to verify an email.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbVerifyEmailRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/verify_mfa": {
+      "post": {
+        "summary": "RPC to verify a TOTP code during sign-in.",
+        "operationId": "UserAuth_VerifyMFA",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbVerifyMFAResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request message for verifying a TOTP code.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbVerifyMFARequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/v1/auth/verify_mfa_works": {
+      "post": {
+        "summary": "RPC to verify a TOTP code during mfa creation.",
+        "operationId": "UserAuth_VerifyMFAWorks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbVerifyMFAWorksResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbVerifyMFAWorksRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "pbAuthTokenInfo": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string"
+        },
+        "refreshToken": {
+          "type": "string"
+        },
+        "accessTokenExpiresAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "refreshTokenExpiresAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "pbByPassOtpRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "recoveryCode": {
+          "type": "string"
+        }
+      },
+      "description": "Request message for bypassing OTP."
+    },
+    "pbByPassOtpResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "authInfo": {
+          "$ref": "#/definitions/pbAuthTokenInfo"
+        }
+      },
+      "description": "Response message for bypassing OTP."
+    },
+    "pbChangePasswordRequest": {
+      "type": "object",
+      "properties": {
+        "oldPassword": {
+          "type": "string",
+          "description": "The current password of the user for verification."
+        },
+        "newPassword": {
+          "type": "string",
+          "description": "The new password to set."
+        },
+        "confirmPassword": {
+          "type": "string",
+          "title": "must match the new_password"
+        }
+      },
+      "description": "The request message for changing a user's password."
+    },
+    "pbChangePasswordResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "description": "Indicates if the password change was successful."
+        },
+        "message": {
+          "type": "string",
+          "description": "An optional message, e.g., for error details."
+        }
+      },
+      "description": "The response message for the ChangePassword RPC method."
+    },
+    "pbChangeUsernameRequest": {
+      "type": "object",
+      "properties": {
+        "newUsername": {
+          "type": "string",
+          "title": "The new username to change to"
+        }
+      },
+      "description": "Request to change the username."
+    },
+    "pbChangeUsernameResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "title": "Message confirming the username change was successful"
+        },
+        "accessToken": {
+          "type": "string"
+        },
+        "accessTokenExpiresAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "description": "Response to the request to change the username."
+    },
+    "pbCompleteRecoveryRequest": {
+      "type": "object",
+      "properties": {
+        "recoveryToken": {
+          "type": "string",
+          "description": "The recovery token sent to the user's email."
+        }
+      },
+      "description": "The request to complete the account recovery process."
+    },
+    "pbCompleteRecoveryResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "description": "Whether the recovery was successful."
+        },
+        "message": {
+          "type": "string",
+          "title": "Optional message, e.g., \"Account recovered successfully.\""
+        }
+      },
+      "description": "The response from the server after completing the recovery."
+    },
+    "pbConfirmChangeEmailRequest": {
+      "type": "object",
+      "properties": {
+        "verificationCode": {
+          "type": "string",
+          "title": "The verification code sent to the user's new email address"
+        }
+      },
+      "description": "Request to confirm the change of email address."
+    },
+    "pbConfirmChangeEmailResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "title": "Message confirming the email change was successful"
+        },
+        "accessToken": {
+          "type": "string"
+        },
+        "accessTokenExpiresAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "description": "Response to the request to confirm the change of email address."
+    },
+    "pbConfirmChangePhoneRequest": {
+      "type": "object",
+      "properties": {
+        "verificationCode": {
+          "type": "string",
+          "title": "The verification code sent to the user's new phone number"
+        }
+      },
+      "description": "Request to confirm the change of phone number."
+    },
+    "pbConfirmChangePhoneResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "title": "Message confirming the phone change was successful"
+        },
+        "accessToken": {
+          "type": "string"
+        },
+        "accessTokenExpiresAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "description": "Response to the request to confirm the change of phone number."
+    },
+    "pbCreateUserRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "fcmToken": {
+          "type": "string"
+        }
+      }
+    },
+    "pbCreateUserResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/pbUser"
+        },
+        "accessToken": {
+          "type": "string"
+        },
+        "accessTokenExpiresAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "pbDeleteAccountRequest": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string"
+        }
+      },
+      "description": "The request to delete a user account."
+    },
+    "pbDeleteAccountResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "description": "Whether the deletion was successful."
+        },
+        "message": {
+          "type": "string",
+          "title": "Optional message, e.g., \"Account scheduled for deletion.\""
+        }
+      },
+      "description": "The response from the server after a delete account request."
+    },
+    "pbImageMetadata": {
+      "type": "object",
+      "properties": {
+        "exif": {
+          "type": "string"
+        },
+        "ext": {
+          "type": "string"
+        }
+      }
+    },
+    "pbIncreaseTotalCoinRequest": {
+      "type": "object",
+      "properties": {
+        "amountToIncrease": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "pbIncreaseTotalCoinResponse": {
+      "type": "object",
+      "properties": {
+        "newTotalCoin": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "pbInitiateChangeEmailRequest": {
+      "type": "object",
+      "properties": {
+        "newEmail": {
+          "type": "string",
+          "title": "The new email address to change to"
+        }
+      },
+      "description": "Request to initiate a change of email address."
+    },
+    "pbInitiateChangeEmailResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "title": "Message confirming the initiation was successful"
+        }
+      },
+      "description": "Response to the request to initiate a change of email address."
+    },
+    "pbInitiateChangePhoneRequest": {
+      "type": "object",
+      "properties": {
+        "newPhone": {
+          "type": "string",
+          "title": "The new phone number to change to"
+        }
+      },
+      "description": "Request to initiate a change of phone number."
+    },
+    "pbInitiateChangePhoneResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "title": "Message confirming the initiation was successful"
+        }
+      },
+      "description": "Response to the request to initiate a change of phone number."
+    },
+    "pbLoginUserRequest": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "title": "email or username or phone"
+        },
+        "password": {
+          "type": "string"
+        },
+        "fcmToken": {
+          "type": "string"
+        }
+      }
+    },
+    "pbLoginUserResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/pbUser"
+        },
+        "authInfo": {
+          "$ref": "#/definitions/pbAuthTokenInfo"
+        }
+      }
+    },
+    "pbLoginWithSocialRequest": {
+      "type": "object",
+      "properties": {
+        "socialProvider": {
+          "type": "string",
+          "title": "e.g., \"facebook\", \"google\", \"twitter\""
+        },
+        "accessToken": {
+          "type": "string",
+          "description": "Access token from the social media provider."
+        }
+      },
+      "description": "Request for logging in with a social media account."
+    },
+    "pbLoginWithSocialResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/pbUser",
+          "description": "The user information."
+        },
+        "authInfo": {
+          "$ref": "#/definitions/pbAuthTokenInfo",
+          "title": "Info on the access token"
+        }
+      },
+      "description": "Response for logging in with a social media account."
+    },
+    "pbRecoveryRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "title": "The email address associated with the account to recover. Send recovery link to email"
+        }
+      },
+      "description": "The request to initiate an account recovery process."
+    },
+    "pbRecoveryResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "description": "Whether the request was accepted."
+        },
+        "message": {
+          "type": "string",
+          "title": "Optional message, e.g., \"Recovery email sent.\""
+        }
+      },
+      "description": "The response from the server after a recovery request."
+    },
+    "pbRegisterMFARequest": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string"
+        }
+      },
+      "description": "Request message for MFA registration."
+    },
+    "pbRegisterMFAResponse": {
+      "type": "object",
+      "properties": {
+        "secret": {
+          "type": "string",
+          "description": "The secret key to be stored securely."
+        },
+        "qrCode": {
+          "type": "string",
+          "format": "byte",
+          "title": "repeated string recovery_codes = 2;"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL of the QR code to scan with the Authy app."
+        }
+      },
+      "description": "Response message for MFA registration."
+    },
+    "pbRegisterWithSocialRequest": {
+      "type": "object",
+      "properties": {
+        "socialProvider": {
+          "type": "string",
+          "title": "e.g., \"facebook\", \"google\", \"twitter\""
+        },
+        "accessToken": {
+          "type": "string",
+          "description": "Access token from the social media provider."
+        }
+      },
+      "description": "Request for registering with a social media account."
+    },
+    "pbRegisterWithSocialResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/pbUser",
+          "description": "The user information."
+        },
+        "accessToken": {
+          "type": "string",
+          "description": "Access token to be used for authenticated requests."
+        },
+        "accessTokenExpiresAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Expiry time of the access token."
+        }
+      },
+      "description": "Response for registering with a social media account."
+    },
+    "pbRequestPasswordResetRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "The email of the user who has forgotten their password."
+        }
+      },
+      "description": "The request message for initiating a password reset process."
+    },
+    "pbRequestPasswordResetResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "An optional message, e.g., for error details."
+        }
+      },
+      "description": "The response message for the RequestPasswordReset RPC method."
+    },
+    "pbResendVerificationRequest": {
+      "type": "object",
+      "description": "The request message containing no data for ResendVerification.\n\nYou can add user identifier if needed, for instance, a user ID or email."
+    },
+    "pbResendVerificationResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "A message or a status code to signify whether the operation was successful."
+        }
+      },
+      "description": "The response message containing the outcome of the ResendVerification operation."
+    },
+    "pbResetPasswordRequest": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "description": "The password reset token that was sent to the user's email."
+        },
+        "newPassword": {
+          "type": "string",
+          "description": "The new password that the user wants to set."
+        }
+      },
+      "description": "The request message for resetting the user's password using a reset token."
+    },
+    "pbResetPasswordResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "An optional message, e.g., for error details."
+        }
+      },
+      "description": "The response message for the ResetPassword RPC method."
+    },
+    "pbRotateTokenRequest": {
+      "type": "object",
+      "properties": {
+        "refreshToken": {
+          "type": "string"
+        }
+      }
+    },
+    "pbRotateTokenResponse": {
+      "type": "object",
+      "properties": {
+        "authInfo": {
+          "$ref": "#/definitions/pbAuthTokenInfo"
+        }
+      }
+    },
+    "pbUImageMetadata": {
+      "type": "object",
+      "properties": {
+        "exif": {
+          "type": "string"
+        },
+        "ext": {
+          "type": "string"
+        }
+      },
+      "title": "*** *** ** ***"
+    },
+    "pbUpdateProfileRequest": {
+      "type": "object",
+      "properties": {
+        "imageUrl": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        }
+      }
+    },
+    "pbUpdateProfileResponse": {
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "pbUpdateUserProfileRequest": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "profileImgData": {
+          "type": "string",
+          "format": "byte"
+        },
+        "profileImgMetadata": {
+          "$ref": "#/definitions/pbUImageMetadata"
+        },
+        "headerImgData": {
+          "type": "string",
+          "format": "byte"
+        },
+        "about": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "headerImgMetadata": {
+          "$ref": "#/definitions/pbUImageMetadata"
+        }
+      }
+    },
+    "pbUpdateUserProfileResponse": {
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "headerImageUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "pbUploadImageResponse": {
+      "type": "object",
+      "properties": {
+        "urls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "uint32 size = 2;"
+        }
+      }
+    },
+    "pbUser": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "passwordChangedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "isEmailVerified": {
+          "type": "boolean"
+        },
+        "isVerified": {
+          "type": "boolean"
+        },
+        "isSuspended": {
+          "type": "boolean"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        },
+        "isMfaEnable": {
+          "type": "boolean"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "about": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "headerImageUrl": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "followerCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "followingCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalCoins": {
+          "type": "number",
+          "format": "double"
+        },
+        "totalCoinsString": {
+          "type": "string"
+        }
+      }
+    },
+    "pbUserQuery": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        }
+      }
+    },
+    "pbUserResponse": {
+      "type": "object",
+      "properties": {
+        "usernames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "pbVerifyEmailRequest": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "description": "The verification token or code that was sent to the user's email."
+        }
+      },
+      "description": "The request message containing the data needed to verify an email."
+    },
+    "pbVerifyEmailResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "A message or a status code to signify whether the email verification was successful."
+        }
+      },
+      "description": "The response message containing the outcome of the VerifyEmail operation."
+    },
+    "pbVerifyMFARequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string",
+          "description": "The TOTP code to verify."
+        }
+      },
+      "description": "Request message for verifying a TOTP code."
+    },
+    "pbVerifyMFAResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "authInfo": {
+          "$ref": "#/definitions/pbAuthTokenInfo"
+        }
+      },
+      "description": "Response message for verifying a TOTP code."
+    },
+    "pbVerifyMFAWorksRequest": {
+      "type": "object",
+      "properties": {
+        "secret": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "title": "Used to test the mfa for newly created mfa"
+    },
+    "pbVerifyMFAWorksResponse": {
+      "type": "object",
+      "properties": {
+        "recoveryCodes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Response message for MFA registration."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

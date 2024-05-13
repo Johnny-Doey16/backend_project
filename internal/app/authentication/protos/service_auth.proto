@@ -1,0 +1,247 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/api/annotations.proto";
+import "rpc_create_user.proto";
+import "rpc_login_user.proto";
+import "rpc_rotate_token.proto";
+import "rpc_change_password.proto";
+import "rpc_reset_password.proto";
+import "rpc_change_identifiers.proto";
+import "rpc_user_profile.proto";
+import "rpc_image_uploader.proto";
+import "rpc_verify_email.proto";
+import "rpc_delete_user.proto";
+import "rpc_social_auth.proto";
+import "rpc_mfa.proto";
+import "accounts.proto";
+
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+
+service UserAuth {
+    // register
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/register"
+            body: "*"
+        };
+    };
+
+    // login
+    rpc LoginUser(LoginUserRequest) returns (LoginUserResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/login"
+            body: "*"
+        };
+    };
+
+    // rotate token
+    rpc RotateToken(RotateTokenRequest) returns (RotateTokenResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/rotate_token"
+            body: "*"
+        };
+    };
+    
+    // Update(change) password
+    rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse){
+        option (google.api.http) = {
+            post: "/v1/auth/change_password"
+            body: "*"
+        };
+    };
+    
+    // Forgot password
+    // RPC method to request a password reset.
+    rpc RequestPasswordReset(RequestPasswordResetRequest) returns (RequestPasswordResetResponse){
+        option (google.api.http) = {
+            post: "/v1/auth/request_reset_password"
+            body: "*"
+        };
+    };
+
+    // RPC method to actually reset the password, using a reset token.
+    rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse){
+        option (google.api.http) = {
+            post: "/v1/auth/reset_password"
+            body: "*"
+        };
+    };
+
+    // Initiate a change email request
+    rpc InitiateChangeEmail(InitiateChangeEmailRequest) returns (InitiateChangeEmailResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/initiate_change_email"
+            body: "*"
+        };
+    };
+
+    // Confirm the change of email
+    rpc ConfirmChangeEmail(ConfirmChangeEmailRequest) returns (ConfirmChangeEmailResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/confirm_change_email"
+            body: "*"
+        };
+    };
+
+    // Initiate a change phone number request
+    rpc InitiateChangePhone(InitiateChangePhoneRequest) returns (InitiateChangePhoneResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/initiate_change_phone"
+            body: "*"
+        };
+    };
+
+    // Confirm the change of phone number
+    rpc ConfirmChangePhone(ConfirmChangePhoneRequest) returns (ConfirmChangePhoneResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/confirm_change_phone"
+            body: "*"
+        };
+    };
+
+    // Update username
+    rpc ChangeUsername(ChangeUsernameRequest) returns (ChangeUsernameResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/change_username"
+            body: "*"
+        };
+    };
+
+    // Upload user profile image
+    rpc UploadProfileImage(stream UploadImageRequest) returns (UploadImageResponse){};
+    
+    // update image. Also called after image is uploaded
+    rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse) {
+        option (google.api.http) = {
+            patch: "/v1/auth/update_user"
+            body: "*"
+        };
+    };
+    
+    // update image. Also called after image is uploaded
+    rpc UpdateUserProfile(stream UpdateUserProfileRequest) returns (UpdateUserProfileResponse) {
+        option (google.api.http) = {
+            patch: "/v1/auth/update_user_profile"
+            body: "*"
+        };
+    };
+
+    // RPC to resend email verification.
+    rpc ResendVerification(ResendVerificationRequest) returns (ResendVerificationResponse){
+        option (google.api.http) = {
+            post: "/v1/auth/resend_verification"
+            body: "*"
+        };
+    };
+
+    // RPC to verify an email.
+    rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse){
+        option (google.api.http) = {
+            post: "/v1/auth/verify_email"
+            body: "*"
+        };
+    };
+
+
+    // Deletes a user account, typically this is a soft delete.
+    rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse){
+        option (google.api.http) = {
+            post: "/v1/auth/delete_account"
+            body: "*"
+        };
+    };
+
+    // Initiates the process to recover a deleted account.
+    rpc RequestAccountRecovery(RecoveryRequest) returns (RecoveryResponse){
+        option (google.api.http) = {
+            post: "/v1/auth/request_account_recovery"
+            body: "*"
+        };
+    };
+
+    // Completes the account recovery process.
+    rpc CompleteAccountRecovery(CompleteRecoveryRequest) returns (CompleteRecoveryResponse){
+        option (google.api.http) = {
+            post: "/v1/auth/recover_account"
+            body: "*"
+        };
+    };
+
+    // Register with a social media account.
+    rpc RegisterWithSocial(RegisterWithSocialRequest) returns (RegisterWithSocialResponse){
+        option (google.api.http) = {
+            post: "/v1/auth/register_sso"
+            body: "*"
+        };
+    };
+
+    // Login with a social media account.
+    rpc LoginWithSocial(LoginWithSocialRequest) returns (LoginWithSocialResponse){
+        option (google.api.http) = {
+            post: "/v1/auth/login_sso"
+            body: "*"
+        };
+    };
+
+    // 2factor auth
+    // RPC to register a new user for MFA.
+    rpc RegisterMFA(RegisterMFARequest) returns (RegisterMFAResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/register_mfa"
+            body: "*"
+        };
+    };
+
+    // RPC to verify a TOTP code during mfa creation.
+    rpc VerifyMFAWorks(VerifyMFAWorksRequest) returns (VerifyMFAWorksResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/verify_mfa_works"
+            body: "*"
+        };
+    };
+
+    // RPC to verify a TOTP code during sign-in.
+    rpc VerifyMFA(VerifyMFARequest) returns (VerifyMFAResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/verify_mfa"
+            body: "*"
+        };
+    };
+
+    // RPC to bypass mfa in case they lose their device
+    rpc ByPassMFA(ByPassOtpRequest) returns (ByPassOtpResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/bypass_mfa"
+            body: "*"
+        };
+    };
+
+    // Suggest users
+    rpc UserSuggestions(stream UserQuery) returns (stream UserResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/suggest_user"
+            body: "*"
+        };
+    };
+
+    // ! move to payments
+    rpc IncreaseTotalCoin(IncreaseTotalCoinRequest) returns (IncreaseTotalCoinResponse) {
+        option (google.api.http) = {
+            post: "/v1/auth/increase_coin"
+            body: "*"
+        };
+    };
+
+
+    // ? ADMIN
+    // verify user
+
+    // ban user (suspend)
+
+    // recover deleted account
+
+}

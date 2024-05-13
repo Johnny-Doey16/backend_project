@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package pb;
+
+import "user.proto";
+import "auth_token_info.proto";
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+message LoginUserRequest {
+    string identifier = 1; // email or username or phone
+    string password = 2;
+    string fcm_token = 3;
+}
+
+message LoginUserResponse {
+    User user = 1;
+    AuthTokenInfo authInfo = 2;
+}

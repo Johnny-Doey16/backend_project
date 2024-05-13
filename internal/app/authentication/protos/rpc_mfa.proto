@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package pb;
+
+// import "user.proto";
+import "auth_token_info.proto";
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+// Request message for MFA registration.
+message RegisterMFARequest {
+    string password = 1;
+}
+  
+// Response message for MFA registration.
+message RegisterMFAResponse {
+  string secret = 1; // The secret key to be stored securely.
+  // repeated string recovery_codes = 2;
+  bytes qrCode = 2;
+  optional string url = 3; // URL of the QR code to scan with the Authy app.
+}
+
+// Used to test the mfa for newly created mfa
+message VerifyMFAWorksRequest {
+  string secret = 1;
+  string token = 2;
+}
+
+// Response message for MFA registration.
+message VerifyMFAWorksResponse {
+  repeated string recovery_codes = 1;
+}
+
+// Request message for verifying a TOTP code.
+message VerifyMFARequest {
+  string user_id = 1;
+  string token = 2; // The TOTP code to verify.
+}
+
+// Response message for verifying a TOTP code.
+message VerifyMFAResponse {
+  bool success = 1;
+  AuthTokenInfo authInfo = 2;
+}
+
+// Request message for bypassing OTP.
+message ByPassOtpRequest {
+  string user_id = 1;
+  string recovery_code = 2;
+}
+
+// Response message for bypassing OTP.
+message ByPassOtpResponse {
+  bool success = 1;
+  AuthTokenInfo authInfo = 2;
+}

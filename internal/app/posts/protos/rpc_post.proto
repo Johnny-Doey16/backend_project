@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+message CreatePostRequest {
+    oneof data {
+        string content = 1;
+        bytes chunk_data = 2;
+        PostImageMetadata metadata = 3;
+    }
+
+}
+
+message CreatePostResponse {
+    string post_id = 1;
+    repeated string image_urls = 2;
+}
+
+message PostImageMetadata {
+    string exif = 1;
+    string ext = 2;
+    string caption = 3;
+}
+
+message GetPostsByUserIdRequest {
+    string user_id = 1;
+    int32 page_size = 2;
+    int32 page_number = 3;
+  }

@@ -1,0 +1,97 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+message SearchVerseRequest {
+    string input = 1;
+    string bible_path = 2;
+}
+
+message GetVerseRangeRequest {
+    string input = 1;
+    string bible_path = 2;
+}
+
+message SearchByKeywordRequest {
+    string bible_path = 1;
+    string keyword = 2;
+}
+
+message ListAllBooksRequest {
+    string bible_path = 1;
+}
+
+message ListAllChaptersOfBookRequest {
+    string bible_path = 1;
+    string book_name = 2;
+}
+
+message ListAllVersesOfChapterRequest {
+    string bible_path = 1;
+    string book_name = 2;
+    int32 chapter_number = 3;
+}
+
+message RandomVerseGeneratorRequest {
+    string bible_path = 1;
+}
+
+message SearchByTopicRequest {
+    string bible_path = 1;
+    string topic = 2;
+}
+
+message CompareTranslationsRequest {
+    string translation1_path = 1;
+    string translation2_path = 2;
+    string book_name = 3;
+    int32 chapter_number = 4;
+    int32 verse_number = 5;
+}
+
+message CrossReferenceLookupRequest {
+    string bible_path = 1;
+    string book_name = 2;
+    int32 chapter_number = 3;
+    int32 verse_number = 4;
+}
+
+message VerseOfTheDayRequest {
+    string bible_path = 1;
+}
+
+message ListAllChaptersOfBookResponse {
+    int32 chapter = 1;
+}
+
+message ListAllChaptersOfBookUnaryResponse {
+    repeated int32 chapter = 1;
+}
+
+message ListAllBooksResponse {
+    string book_name = 1;
+}
+
+message GenerateReadingPlanRequest {
+    string bible_path = 1;               // Path to the XML file containing the Bible data
+    int32 duration_in_days = 2;    // Duration in days for reading the entire scripture
+  }
+  
+  message GetCurrentReadingRequest {
+    string bible_path = 1;                            // Path to the XML file containing the Bible data
+    google.protobuf.Timestamp start_date = 2;   // Start date of the reading plan
+    google.protobuf.Timestamp current_date = 3; // Current date for which to get the reading
+    int32 duration_in_days = 4;                 // Duration in days for reading the entire scripture
+}
+
+message DownloadBibleRequest {
+    string bible_translation = 1;
+}
+
+message DownloadBibleResponse {
+    bytes data = 1;
+}

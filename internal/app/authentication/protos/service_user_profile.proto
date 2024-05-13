@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package pb;
+
+import "rpc_user_profile.proto";
+import "rpc_image_uploader.proto";
+
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+
+service UserProfile {
+    rpc UploadImage(stream UploadImageRequest) returns (UploadImageResponse){};
+    
+    rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse) {};
+
+}

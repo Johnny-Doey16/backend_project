@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package pb;
+
+import "prayer.proto";
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+// Service definition for audio prayer meeting
+service PrayerService {
+    // Method to create a new prayer room
+    rpc CreatePrayerRoom(CreatePrayerRoomRequest) returns (PrayerRoomResponse);
+    
+    // Method to update a prayer room
+    rpc UpdatePrayerRoom(PrayerRoom) returns (PrayerRoomResponse);
+    
+    // Method to delete a prayer room by its ID
+    // rpc DeletePrayerRoom(google.protobuf.StringValue) returns (PrayerRoomResponse);
+    rpc DeletePrayerRoom(PrayerRoomId) returns (PrayerRoomResponse);
+    
+    // Method to invite a participant to a prayer room
+    rpc InviteParticipant(InviteParticipantRequest) returns (PrayerRoomResponse);
+    
+    // Method to accept an invitation to a prayer room
+    rpc AcceptInvitation(PrayerRoomId) returns (InvitationResponse);
+    
+    // Method to decline an invitation to a prayer room
+    rpc DeclineInvitation(PrayerRoomId) returns (InvitationResponse);
+
+    // Get user's prayer rooms
+    rpc GetUserPrayerRooms(GetUserRoomsRequest) returns (stream PrayerRoom);
+
+    // Method to decline an invitation to a prayer room
+    rpc JoinPrayerRoom(PrayerRoomId) returns (PrayerRoomResponse);
+
+    // Method to retrieve a prayer room by its ID
+    // rpc GetPrayerRoomById(google.protobuf.StringValue) returns (PrayerRoom);
+    
+}

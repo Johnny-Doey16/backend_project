@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package pb;
+
+import "auth_token_info.proto";
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+message RotateTokenRequest {
+    string refreshToken = 1;
+}
+
+message RotateTokenResponse {
+    AuthTokenInfo authInfo = 2;
+}

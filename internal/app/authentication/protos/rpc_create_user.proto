@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package pb;
+
+import "user.proto";
+import "google/protobuf/timestamp.proto";
+
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+message CreateUserRequest {
+    string email = 1;
+    string username = 2;
+    string password = 3;
+    string fcm_token = 4;
+}
+
+message CreateUserResponse {
+    User user = 1;
+    string access_token = 2;
+    google.protobuf.Timestamp access_token_expires_at = 3;
+}

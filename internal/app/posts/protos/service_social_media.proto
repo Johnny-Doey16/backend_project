@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+package pb;
+
+import "comment.proto";
+import "post.proto";
+import "rpc_post.proto";
+import "follow.proto";
+import "like.proto";
+import "posts_user.proto";
+import "rpc_suggest_users.proto";
+import "view.proto";
+import "repost.proto";
+import "rpc_post_bkmk.proto";
+import "rpc_block_users.proto";
+// import "google/protobuf/empty.proto";
+import "rpc_search.proto";
+import "notification.proto";
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+service SocialMedia {
+    // Bidirectional streaming RPC for Posts
+    rpc PostStream (stream PostRequest) returns (stream PostStreamResponse){};//Post) {}
+
+    rpc GetPost (GetPostRequest) returns (PostStreamResponse){};
+
+    // Client stream (for images) for creating posts
+    rpc CreatePost (stream CreatePostRequest) returns (CreatePostResponse) {}
+    rpc FollowUser (FollowUserRequest) returns (FollowResponse);
+    rpc UnFollowUser (UnFollowUserRequest) returns (FollowResponse);
+    rpc GetFollowers (GetFollowersRequest) returns (stream PostUser);
+    rpc GetFollowing (GetFollowingRequest) returns (stream PostUser);
+    rpc ViewUserProfile (UserProfileRequest) returns (UserProfileResponse);
+
+    // Get posts of a user
+    rpc GetPostsByUserId (GetPostsByUserIdRequest) returns (stream Post);
+
+    // unary stream for real-time likes and unlikes
+    rpc LikePost(LikePostRequest) returns (LikePostResponse);
+
+    // unary stream for real-time view
+    rpc ViewPost(ViewPostRequest) returns (ViewPostResponse);
+    
+    // Sends a paginated request for users to follow suggestions.
+    rpc SuggestUsersToFollow (SuggestUsersToFollowRequest) returns (SuggestUsersToFollowResponse){};
+    
+    rpc SendPostComment(CommentRequest) returns (CommentResponse);
+
+    rpc FetchPostComment(FetchCommentsRequest) returns (FetchCommentsResponse);
+    
+    // Review: Bidirectional streaming RPC for live comments on a post
+    rpc LiveComments(stream Comment) returns (stream Comment);
+
+    // ! Reposts
+    // Create a new repost
+    rpc CreateRepost(CreateRepostRequest) returns (RepostResponse);
+
+    // Get a repost by ID
+    rpc GetRepost(GetRepostRequest) returns (RepostResponse);
+
+    // Get reposts by user ID
+    rpc GetRepostsByUser(GetRepostsByUserRequest) returns (RepostsResponse);
+
+    // Delete a repost
+    rpc DeleteRepost(DeleteRepostRequest) returns (DeleteRepostResponse);
+
+    
+    // RPC to get a list of bookmarked posts for a user.
+    rpc GetBookmarkedPosts(GetBookmarkedPostsRequest) returns (GetBookmarkedPostsResponse);
+
+    // RPC to bookmark a post.
+    rpc BookmarkPost(BookmarkPostRequest) returns (BookmarkPostResponse);
+
+    // RPC to delete a bookmarked post.
+    rpc DeleteBookmark(DeleteBookmarkRequest) returns (DeleteBookmarkResponse);
+
+
+    // RPC to block a user.
+    rpc BlockUser (BlockUserRequest) returns (BlockUserResponse);
+
+    // RPC to get a list of blocked users by the blocker.
+    rpc GetBlockedUsers (GetBlockedUsersRequest) returns (GetBlockedUsersResponse);
+
+    // RPC to unblock a user.
+    rpc UnblockUser (UnblockUserRequest) returns (UnblockUserResponse);
+
+    // Search rpc
+    rpc GenericSearch (SearchRequest) returns (SearchResult);
+
+    // ! Notifications
+    rpc GetNotifications (GetNotificationRequest) returns (stream Notification);
+    rpc MarkNotificationAsRead (NotificationId) returns (MarkNotificationAsReadResponse);
+    rpc DeleteNotifications (NotificationIds) returns (DeleteNotificationResponse);
+}

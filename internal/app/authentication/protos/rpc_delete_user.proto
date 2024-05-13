@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+// The request to delete a user account.
+message DeleteAccountRequest {
+  string password = 1;
+}
+
+// The response from the server after a delete account request.
+message DeleteAccountResponse {
+  bool success = 1; // Whether the deletion was successful.
+  string message = 2; // Optional message, e.g., "Account scheduled for deletion."
+}
+
+// The request to initiate an account recovery process.
+message RecoveryRequest {
+  string email = 1; // The email address associated with the account to recover. Send recovery link to email
+}
+
+// The response from the server after a recovery request.
+message RecoveryResponse {
+  bool success = 1; // Whether the request was accepted.
+  string message = 2; // Optional message, e.g., "Recovery email sent."
+}
+
+// The request to complete the account recovery process.
+message CompleteRecoveryRequest {
+  string recovery_token = 1; // The recovery token sent to the user's email.
+}
+
+// The response from the server after completing the recovery.
+message CompleteRecoveryResponse {
+  bool success = 1; // Whether the recovery was successful.
+  string message = 2; // Optional message, e.g., "Account recovered successfully."
+}

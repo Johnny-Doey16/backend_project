@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package pb;
+
+import "bible.proto";
+import "rpc_bible.proto";
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+// The service definition
+service BibleService {
+  rpc SearchVerse (SearchVerseRequest) returns (Verse);
+  rpc GetVerseRange (GetVerseRangeRequest) returns (VerseRange);
+  rpc SearchByKeyword (SearchByKeywordRequest) returns (stream Verse);
+  rpc ListAllBooks (ListAllBooksRequest) returns (stream ListAllBooksResponse);
+  rpc ListAllChaptersOfBook (ListAllChaptersOfBookRequest) returns (stream ListAllChaptersOfBookResponse);
+  rpc ListAllChaptersOfBookUnary (ListAllChaptersOfBookRequest) returns (ListAllChaptersOfBookUnaryResponse);
+  rpc ListAllVersesOfChapter (ListAllVersesOfChapterRequest) returns (stream Verse);//ListAllVersesOfChapterResponse);
+  rpc RandomVerseGenerator (RandomVerseGeneratorRequest) returns (Verse);
+  rpc SearchByTopic (SearchByTopicRequest) returns (stream Verse);
+  rpc VerseOfTheDay (VerseOfTheDayRequest) returns (Verse);
+  rpc GenerateReadingPlan(GenerateReadingPlanRequest) returns (stream BiblePlan);
+  rpc GetCurrentReading(GetCurrentReadingRequest) returns (BiblePlan);
+  rpc DownloadBible(DownloadBibleRequest) returns (stream DownloadBibleResponse);
+  
+  rpc CompareTranslations (CompareTranslationsRequest) returns (stream Verse); // TODO: implement later
+  // rpc CrossReferenceLookup (CrossReferenceLookupRequest) returns (stream string);//
+}

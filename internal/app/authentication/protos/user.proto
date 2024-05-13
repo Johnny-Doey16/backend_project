@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+message User {
+    string uid = 1;
+    string username = 2;
+    string email = 3;
+    string phone = 4;
+    google.protobuf.Timestamp password_changed_at = 5;
+    google.protobuf.Timestamp created_at = 6;
+    bool is_email_verified = 7;
+    bool is_verified = 8;
+    bool is_suspended = 9;
+    bool is_deleted = 10;
+    bool is_mfa_enable = 11;
+    string first_name = 12;
+    string last_name = 13;
+    string about = 14;
+    string image_url = 15;
+    string header_image_url = 16;
+    string website = 17;
+    int32 follower_count = 18;
+    int32 following_count = 19;
+    double total_coins = 20;
+    string total_coins_string = 21;
+}

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package pb;
+
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+message ImageMetadata {
+    string exif = 1;
+    string ext = 2;
+}
+
+message UploadImageRequest {
+    oneof data {
+        bytes chunk_data = 2;
+        ImageMetadata metadata = 1;
+    }
+}
+
+message UploadImageResponse {
+    repeated string urls = 1;
+    // uint32 size = 2;
+}
+
+// message ImageInfo {
+//     string image_id = 1;
+//     string image_type = 2;
+// }

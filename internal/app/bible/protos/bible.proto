@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package pb;
+
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+message Verse {
+  string book = 1;
+  int32 chapter = 2;
+  int32 verse = 3;
+  string text = 4;
+}
+
+message VerseRange {
+  string book = 1;
+  int32 chapter = 2;
+  int32 start_verse = 3;
+  int32 end_verse = 4;
+  repeated string verses = 5;
+}
+
+message BiblePlan {
+  int32 day = 1;
+  string startReading = 2;
+  string endReading = 3;
+}

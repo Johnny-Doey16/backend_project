@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+
+// The request to block a user.
+message BlockUserRequest {
+  string blocked_user_id = 1;   // The ID of the user to be blocked.
+  optional string reason = 2;            // The reason for blocking.
+}
+
+// The response after blocking a user.
+message BlockUserResponse {
+  BlockedUser blocked_user = 1; // The blocked user details.
+}
+
+// The blocked user information.
+message BlockedUser {
+  int32 id = 1;
+  string blocking_user_id = 2;
+  string blocked_user_id = 3;
+  string reason = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
+
+// The request to get a list of blocked users.
+message GetBlockedUsersRequest {
+  string blocking_user_id = 1; // The ID of the user who has blocked others.
+}
+
+// The response with a list of blocked users.
+message GetBlockedUsersResponse {
+  repeated BlockedUser blocked_users = 1; // The list of blocked users.
+}
+
+// The request to unblock a user.
+message UnblockUserRequest {
+  int32 id = 1; // The ID of the block entry to remove.
+}
+
+message UnblockUserResponse {
+  bool success = 1;
+}

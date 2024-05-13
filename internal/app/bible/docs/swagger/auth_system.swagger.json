@@ -1,0 +1,147 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "bible.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "BibleService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "pbBiblePlan": {
+      "type": "object",
+      "properties": {
+        "day": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "startReading": {
+          "type": "string"
+        },
+        "endReading": {
+          "type": "string"
+        }
+      }
+    },
+    "pbDownloadBibleResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "pbListAllBooksResponse": {
+      "type": "object",
+      "properties": {
+        "bookName": {
+          "type": "string"
+        }
+      }
+    },
+    "pbListAllChaptersOfBookResponse": {
+      "type": "object",
+      "properties": {
+        "chapter": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "pbListAllChaptersOfBookUnaryResponse": {
+      "type": "object",
+      "properties": {
+        "chapter": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    },
+    "pbVerse": {
+      "type": "object",
+      "properties": {
+        "book": {
+          "type": "string"
+        },
+        "chapter": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "verse": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "pbVerseRange": {
+      "type": "object",
+      "properties": {
+        "book": {
+          "type": "string"
+        },
+        "chapter": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "startVerse": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "endVerse": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "verses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

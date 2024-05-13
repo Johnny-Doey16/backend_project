@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+message UpdateProfileRequest {
+    optional string image_url = 1;
+    optional string first_name = 2;
+    optional string last_name = 3;
+}
+
+message UpdateProfileResponse {
+    string msg = 1;
+}
+
+
+
+// *** *** ** ***
+message UImageMetadata {
+    string exif = 1;
+    string ext = 2;
+}
+
+message UpdateUserProfileRequest {
+    oneof data {
+        string first_name = 1;
+        string last_name = 2;
+        bytes profile_img_data = 3;
+        UImageMetadata profile_img_metadata = 4;
+        bytes header_img_data = 5;
+        string about = 6;
+        string website = 7;
+        UImageMetadata header_img_metadata = 8;
+    }
+}
+
+message UpdateUserProfileResponse {
+    string msg = 1;
+    bool status = 2;
+    string image_url = 3;
+    string header_image_url = 4;
+}
+
+message UserQuery {
+    string query = 1;
+}
+
+message UserResponse {
+    repeated string usernames = 1;
+}

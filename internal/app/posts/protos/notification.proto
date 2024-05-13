@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+message GetNotificationRequest {
+    string type = 1;
+}
+
+
+message Notification {
+    int32 notification_id = 1;
+    string type = 2;
+    bool read = 3;
+    google.protobuf.Timestamp time = 4;
+    string id = 5;
+    string author_username = 6;
+    string author_profile_image = 7;
+    string post_announcement_content = 8;
+    string post_announcement_id = 9;
+    string user_type = 10;
+    optional string meeting_invite_stat = 11;
+    optional string meeting_title = 12;
+    optional string meeting_id = 13;
+    optional google.protobuf.Timestamp start_time = 14;
+    optional google.protobuf.Timestamp end_time = 15;
+}
+
+message NotificationId {
+    int32 notification_id = 1;
+}
+
+message NotificationIds {
+    repeated int32 notification_ids = 1;
+}
+
+message MarkNotificationAsReadResponse {
+    string msg = 1;
+    bool read = 2;
+}
+
+message DeleteNotificationResponse {
+    string msg = 1;
+    bool deleted = 2;
+}

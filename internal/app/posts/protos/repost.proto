@@ -1,0 +1,52 @@
+
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+// Request to create a repost
+message CreateRepostRequest {
+    string user_id = 1;
+    string original_post_id = 2;
+  }
+  
+  // Request to get a single repost by ID
+  message GetRepostRequest {
+    int32 id = 1;
+  }
+  
+  // Request to get reposts by a user ID
+  message GetRepostsByUserRequest {
+    string user_id = 1;
+  }
+  
+  // Request to delete a repost
+  message DeleteRepostRequest {
+    int32 id = 1;
+  }
+  
+  // Response for a single repost
+  message RepostResponse {
+    Repost repost = 1;
+  }
+  
+  // Response for multiple reposts
+  message RepostsResponse {
+    repeated Repost reposts = 1;
+  }
+  
+  // Response for delete repost operation
+  message DeleteRepostResponse {
+    bool success = 1;
+  }
+  
+  // Repost message definition
+  message Repost {
+    int32 id = 1;
+    string user_id = 2;
+    string original_post_id = 3;
+    google.protobuf.Timestamp created_at = 4;
+  }

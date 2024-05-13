@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+// The request message containing no data for ResendVerification.
+message ResendVerificationRequest {
+  // You can add user identifier if needed, for instance, a user ID or email.
+}
+
+// The response message containing the outcome of the ResendVerification operation.
+message ResendVerificationResponse {
+  // A message or a status code to signify whether the operation was successful.
+  string message = 1;
+}
+
+// The request message containing the data needed to verify an email.
+message VerifyEmailRequest {
+  // The verification token or code that was sent to the user's email.
+  string token = 1;
+}
+
+// The response message containing the outcome of the VerifyEmail operation.
+message VerifyEmailResponse {
+  // A message or a status code to signify whether the email verification was successful.
+  string message = 1;
+}

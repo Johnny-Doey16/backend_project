@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/steve-mir/diivix_backend/pb";
+
+
+
+message CreateChurchProgramRequest {
+  int32 id = 1;
+  string program_type = 2; // eg special event, retreat, mass,
+  string program_name = 3; // eg harvest, bazaar, spiritual retreat, sunday mass,
+  string program_desc = 4;
+  string program_day = 5; // Day of the week for recurring events other "2023-10-11" 
+  google.protobuf.Timestamp program_start_time = 6;
+  google.protobuf.Timestamp program_end_time = 7;
+  string program_freq = 8;
+//   string program_image_url = 9;
+}
+
+message CreateChurchProgramResponse {
+    string msg = 1;
+}
+
+message GetChurchProgramsRequest {
+    int32 church_id = 1;
+    int32 page_number = 2;
+    int32 page_size = 3;
+}
+
+message GetChurchProgramsResponse {
+    CreateChurchProgramRequest church_program = 1;
+}
+
+message DeleteChurchProgramRequest {
+    int32 program_id = 1;
+}
