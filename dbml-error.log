@@ -1,0 +1,54 @@
+2023-12-12T19:10:53.298Z
+SyntaxError: You have a syntax error at "db.dbml" line 125 column 1. Field "used" existed in table "account_recovery_requests"
+    at /opt/homebrew/lib/node_modules/@dbml/cli/lib/cli/utils.js:45:13
+    at Array.forEach (<anonymous>)
+    at generate (/opt/homebrew/lib/node_modules/@dbml/cli/lib/cli/utils.js:39:14)
+    at exportHandler (/opt/homebrew/lib/node_modules/@dbml/cli/lib/cli/export.js:28:27)
+    at Object.dbml2sql (/opt/homebrew/lib/node_modules/@dbml/cli/lib/cli/index.js:19:23)
+    at Object.<anonymous> (/opt/homebrew/lib/node_modules/@dbml/cli/bin/dbml2sql.js:4:19)
+    at Module._compile (node:internal/modules/cjs/loader:1233:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1287:10)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Module._load (node:internal/modules/cjs/loader:938:12)
+
+ROOT_ERROR:
+Error: Field "used" existed in table "account_recovery_requests"
+    at Field.error (/opt/homebrew/lib/node_modules/@dbml/cli/node_modules/@dbml/core/lib/model_structure/element.js:55:13)
+    at Table.checkField (/opt/homebrew/lib/node_modules/@dbml/cli/node_modules/@dbml/core/lib/model_structure/table.js:92:15)
+    at Table.pushField (/opt/homebrew/lib/node_modules/@dbml/cli/node_modules/@dbml/core/lib/model_structure/table.js:83:12)
+    at /opt/homebrew/lib/node_modules/@dbml/cli/node_modules/@dbml/core/lib/model_structure/table.js:75:16
+    at Array.forEach (<anonymous>)
+    at Table.processFields (/opt/homebrew/lib/node_modules/@dbml/cli/node_modules/@dbml/core/lib/model_structure/table.js:74:17)
+    at new Table (/opt/homebrew/lib/node_modules/@dbml/cli/node_modules/@dbml/core/lib/model_structure/table.js:58:11)
+    at /opt/homebrew/lib/node_modules/@dbml/cli/node_modules/@dbml/core/lib/model_structure/database.js:118:30
+    at Array.forEach (<anonymous>)
+    at Database.processSchemaElements (/opt/homebrew/lib/node_modules/@dbml/cli/node_modules/@dbml/core/lib/model_structure/database.js:107:16)
+{"start":{"offset":3113,"line":125,"column":1},"end":{"offset":3128,"line":126,"column":1}}
+
+2023-12-12T19:11:54.432Z
+SyntaxError: You have a syntax error at "db.dbml" line 362 column 5. Column "id" do not exist in table "follow"
+    at /opt/homebrew/lib/node_modules/@dbml/cli/lib/cli/utils.js:45:13
+    at Array.forEach (<anonymous>)
+    at generate (/opt/homebrew/lib/node_modules/@dbml/cli/lib/cli/utils.js:39:14)
+    at exportHandler (/opt/homebrew/lib/node_modules/@dbml/cli/lib/cli/export.js:28:27)
+    at Object.dbml2sql (/opt/homebrew/lib/node_modules/@dbml/cli/lib/cli/index.js:19:23)
+    at Object.<anonymous> (/opt/homebrew/lib/node_modules/@dbml/cli/bin/dbml2sql.js:4:19)
+    at Module._compile (node:internal/modules/cjs/loader:1233:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1287:10)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Module._load (node:internal/modules/cjs/loader:938:12)
+
+ROOT_ERROR:
+Error: Column "id" do not exist in table "follow"
+    at Index.error (/opt/homebrew/lib/node_modules/@dbml/cli/node_modules/@dbml/core/lib/model_structure/element.js:55:13)
+    at /opt/homebrew/lib/node_modules/@dbml/cli/node_modules/@dbml/core/lib/model_structure/table.js:117:17
+    at Array.forEach (<anonymous>)
+    at Table.checkIndex (/opt/homebrew/lib/node_modules/@dbml/cli/node_modules/@dbml/core/lib/model_structure/table.js:115:21)
+    at Table.pushIndex (/opt/homebrew/lib/node_modules/@dbml/cli/node_modules/@dbml/core/lib/model_structure/table.js:108:12)
+    at /opt/homebrew/lib/node_modules/@dbml/cli/node_modules/@dbml/core/lib/model_structure/table.js:100:16
+    at Array.forEach (<anonymous>)
+    at Table.processIndexes (/opt/homebrew/lib/node_modules/@dbml/cli/node_modules/@dbml/core/lib/model_structure/table.js:99:18)
+    at new Table (/opt/homebrew/lib/node_modules/@dbml/cli/node_modules/@dbml/core/lib/model_structure/table.js:59:11)
+    at /opt/homebrew/lib/node_modules/@dbml/cli/node_modules/@dbml/core/lib/model_structure/database.js:118:30
+{"start":{"offset":7514,"line":362,"column":5},"end":{"offset":7554,"line":362,"column":45}}
+
